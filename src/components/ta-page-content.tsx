@@ -37,7 +37,7 @@ export function TAPageContent({ suggested, projects }: TAPageContentProps) {
         <div className="relative">
           <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-gray-400" />
           <Input
-            size="sm"
+            size="md"
             placeholder="Search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}

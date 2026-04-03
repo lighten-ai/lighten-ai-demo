@@ -1,6 +1,10 @@
 import type { TherapeuticArea, Project, AppModule } from "@/lib/mock-data";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+function getBaseUrl() {
+  if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_API_URL;
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return "http://localhost:3000";
+}
 
 interface TherapeuticAreasResponse {
   suggested: TherapeuticArea[];
@@ -16,7 +20,7 @@ interface AppsResponse {
 }
 
 export async function getTherapeuticAreas(): Promise<TherapeuticAreasResponse> {
-  const res = await fetch(`${BASE_URL}/api/therapeutic-areas`, {
+  const res = await fetch(`${getBaseUrl()}/api/therapeutic-areas`, {
     cache: "no-store",
   });
   if (!res.ok) throw new Error("Failed to fetch therapeutic areas");
@@ -29,7 +33,7 @@ export async function getTherapeuticAreaBySlug(slug: string): Promise<Therapeuti
 }
 
 export async function getApps(): Promise<AppsResponse> {
-  const res = await fetch(`${BASE_URL}/api/apps`, {
+  const res = await fetch(`${getBaseUrl()}/api/apps`, {
     cache: "no-store",
   });
   if (!res.ok) throw new Error("Failed to fetch apps");
