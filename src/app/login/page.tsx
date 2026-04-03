@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { PrimaryButton } from "@/components/primary-button";
 import { Input } from "@/components/input";
+import { Title } from "@/components/title";
 
 export default function LoginPage() {
   const [password, setPassword] = useState("");
@@ -31,9 +32,9 @@ export default function LoginPage() {
         <div className="flex justify-center mb-6">
           <img src="/logomark.svg" alt="Lighten AI" width={32} height={32} />
         </div>
-        <h1 className="text-center text-xl font-medium text-gray-900">Lighten AI Demo</h1>
-        <p className="mt-1 text-center text-sm text-gray-600">Enter password to continue</p>
-        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+        <Title className="text-center text-xl">Lighten AI Demo</Title>
+        <p className="mt-1 text-center text-sm font-medium text-gray-600">Enter password to continue</p>
+        <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
           <Input
             type="password"
             size="md"
@@ -42,8 +43,8 @@ export default function LoginPage() {
             onChange={(e) => { setPassword(e.target.value); setError(false); }}
             isInvalid={error}
           />
-          {error && <p className="text-xs text-red-500">Incorrect password</p>}
-          <PrimaryButton className="w-full">Enter</PrimaryButton>
+          {error && <p className="text-xs font-medium text-red-500">Incorrect password</p>}
+          <PrimaryButton size="default" className="w-full">Enter</PrimaryButton>
         </form>
       </div>
     </div>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Search } from "lucide-react";
+import { Input } from "@/components/input";
 import {
   Table,
   TableBody,
@@ -35,12 +36,12 @@ export function TAPageContent({ suggested, projects }: TAPageContentProps) {
         <Title>Therapeutic Areas</Title>
         <div className="relative">
           <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-gray-400" />
-          <input
-            type="text"
+          <Input
+            size="sm"
             placeholder="Search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="h-8 w-[320px] rounded-lg border border-gray-300 bg-white py-1.5 pl-9 pr-3 text-sm font-medium leading-5 text-gray-900 placeholder:text-gray-400 outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
+            className="w-[320px] pl-9"
           />
         </div>
       </div>

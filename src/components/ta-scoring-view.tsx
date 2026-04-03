@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, X, ChevronDown } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { Title } from "@/components/title";
 import { PrimaryButton } from "@/components/primary-button";
-import { Input } from "@/components/input";
 import { RadarScoreChart } from "@/components/radar-score-chart";
 import type { TherapeuticArea } from "@/lib/mock-data";
 
@@ -39,9 +39,9 @@ export function TAScoringView({ ta }: { ta: TherapeuticArea }) {
           {/* Title + badge */}
           <div className="flex items-center gap-2">
             <Title className="text-xl flex-1">{ta.name}</Title>
-            <span className="inline-flex items-center rounded-md bg-green-100 px-2 py-0.5 text-sm font-medium leading-5 text-green-800">
+            <Badge variant="outline" className="border-transparent bg-green-100 text-green-800 rounded-md">
               {ta.confidence} Confidence
-            </span>
+            </Badge>
           </div>
         </div>
 
