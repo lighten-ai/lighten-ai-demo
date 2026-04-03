@@ -23,9 +23,9 @@ export async function getTherapeuticAreas(): Promise<TherapeuticAreasResponse> {
   return res.json();
 }
 
-export async function getTherapeuticArea(id: string): Promise<TherapeuticArea | null> {
+export async function getTherapeuticAreaBySlug(slug: string): Promise<TherapeuticArea | null> {
   const { suggested } = await getTherapeuticAreas();
-  return suggested.find((ta) => ta.id === id) ?? null;
+  return suggested.find((ta) => ta.slug === slug) ?? null;
 }
 
 export async function getApps(): Promise<AppsResponse> {

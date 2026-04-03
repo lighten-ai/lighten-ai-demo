@@ -1,14 +1,14 @@
 import { notFound } from "next/navigation";
-import { getTherapeuticArea } from "@/lib/api";
+import { getTherapeuticAreaBySlug } from "@/lib/api";
 import { TAScoringView } from "@/components/ta-scoring-view";
 
 export default async function TAScoringPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }) {
-  const { id } = await params;
-  const ta = await getTherapeuticArea(id);
+  const { slug } = await params;
+  const ta = await getTherapeuticAreaBySlug(slug);
 
   if (!ta) notFound();
 

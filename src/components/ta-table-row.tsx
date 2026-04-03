@@ -10,7 +10,7 @@ export function ProjectTableRow({ project }: { project: Project }) {
 
   return (
     <TableRow
-      onClick={() => router.push(`/projects/${project.id}/apps`)}
+      onClick={() => router.push(`/projects/${project.slug}/apps`)}
       className="group"
     >
       <TableCell className="text-gray-900">{project.name}</TableCell>

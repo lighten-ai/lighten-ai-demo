@@ -5,6 +5,7 @@ export async function GET() {
     suggested: [
       {
         id: "cardiology",
+        slug: "cardiology",
         name: "Cardiology",
         description:
           "This section provides an overview of the treatment options available for cardiovascular diseases.",
@@ -32,6 +33,7 @@ export async function GET() {
       },
       {
         id: "oncology",
+        slug: "oncology",
         name: "Oncology",
         description:
           "Explore the latest advancements in cancer treatment and patient care.",
@@ -61,6 +63,7 @@ export async function GET() {
     projects: [
       {
         id: "proj-1",
+        slug: "cardiology-hae-study",
         name: "Cardiology HAE Study",
         therapeuticAreaId: "cardiology",
         therapeuticAreaName: "Cardiology",
@@ -69,6 +72,7 @@ export async function GET() {
       },
       {
         id: "proj-2",
+        slug: "oncology-nsclc-analysis",
         name: "Oncology NSCLC Analysis",
         therapeuticAreaId: "oncology",
         therapeuticAreaName: "Oncology",

@@ -5,6 +5,7 @@ import { Search } from "lucide-react";
 import {
   Table,
   TableBody,
+  TableCell,
   TableHead,
   TableHeader,
   TableRow,
@@ -52,7 +53,7 @@ export function TAPageContent({ suggested, projects }: TAPageContentProps) {
               key={ta.id}
               title={ta.name}
               description={ta.description}
-              href={`/tas/${ta.id}/scoring`}
+              href={`/tas/${ta.slug}/scoring`}
               buttonLabel={`Preview ${ta.name}`}
             />
           ))}
@@ -74,10 +75,13 @@ export function TAPageContent({ suggested, projects }: TAPageContentProps) {
               <ProjectTableRow key={project.id} project={project} />
             ))}
             {filteredProjects.length === 0 && (
-              <TableRow>
-                <td colSpan={4} className="px-4 py-8 text-center text-sm font-medium text-gray-400">
-                  No projects match your search.
-                </td>
+              <TableRow className="hover:bg-transparent">
+                <TableCell>
+                  <span className="text-gray-400">No projects match your search.</span>
+                </TableCell>
+                <TableCell />
+                <TableCell />
+                <TableCell />
               </TableRow>
             )}
           </TableBody>

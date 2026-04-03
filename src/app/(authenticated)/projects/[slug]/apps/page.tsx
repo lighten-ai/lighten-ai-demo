@@ -81,13 +81,13 @@ export default async function AppsPage() {
               key={app.id}
               className="gap-0 overflow-hidden border border-gray-200 bg-white py-0"
             >
-              <div className="relative h-40 overflow-hidden opacity-50">
+              <div className="relative h-40 overflow-hidden">
                 <img
                   src={appImages[app.id]}
                   alt={app.name}
                   className="absolute inset-0 size-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" />
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-b from-transparent to-white" />
               </div>
 
               <CardContent className="flex flex-col gap-4 p-6">
@@ -101,13 +101,13 @@ export default async function AppsPage() {
                 <p className="text-sm font-medium leading-5 text-gray-700">
                   {app.description}
                 </p>
-                <div className="flex w-full gap-2">
+                <div className="flex flex-row gap-4">
                   {app.actions.map((action) => (
                     <PrimaryButton
                       key={action}
                       variant={action === "Open" || action === "Preview" ? "outline" : "default"}
                       size="default"
-                      className="w-full"
+                      className="flex-1"
                     >
                       {action}
                     </PrimaryButton>

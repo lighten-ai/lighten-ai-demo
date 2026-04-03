@@ -1,5 +1,6 @@
 export interface TherapeuticArea {
   id: string;
+  slug: string;
   name: string;
   description: string;
   confidence: "High" | "Medium" | "Low";
@@ -23,6 +24,7 @@ export interface TherapeuticArea {
 
 export interface Project {
   id: string;
+  slug: string;
   name: string;
   therapeuticAreaId: string;
   therapeuticAreaName: string;
