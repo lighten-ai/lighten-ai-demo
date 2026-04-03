@@ -1,65 +1,116 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import Link from "next/link";
+import { Search, MoreHorizontal } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { suggestedTAs, therapeuticAreaRows } from "@/lib/mock-data";
+
+export default function TherapeuticAreasPage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="p-8">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-medium">
+          Therapeutic Areas
+        </h1>
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <input
+            type="text"
+            placeholder="Search"
+            className="h-10 w-[220px] rounded-lg border border-border bg-white pl-9 pr-4 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+          />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </div>
+
+      {/* Suggested TAs Section */}
+      <section className="mt-8">
+        <h2 className="text-base text-muted-foreground">Suggested TAs</h2>
+        <div className="mt-4 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {suggestedTAs.map((ta) => (
+            <Card
+              key={ta.id}
+              className="border border-border bg-white shadow-sm"
+            >
+              <CardContent className="p-6">
+                <h3 className="text-lg font-bold">{ta.name}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  {ta.description}
+                </p>
+                <Separator className="my-5" />
+                <Link href={`/ta-scoring/${ta.id}`} className="block">
+                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-10 text-sm font-medium">
+                    Preview {ta.name}
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+          ))}
         </div>
-      </main>
+      </section>
+
+      {/* Therapeutic Areas Table */}
+      <section className="mt-10">
+        <div className="rounded-xl border border-border bg-white overflow-hidden">
+          <Table>
+            <TableHeader>
+              <TableRow className="hover:bg-transparent bg-muted/30">
+                <TableHead className="font-semibold text-xs uppercase tracking-wider text-muted-foreground h-12">
+                  Name
+                </TableHead>
+                <TableHead className="font-semibold text-xs uppercase tracking-wider text-muted-foreground h-12">
+                  Last Modified
+                </TableHead>
+                <TableHead className="font-semibold text-xs uppercase tracking-wider text-muted-foreground h-12">
+                  Last Refresh
+                </TableHead>
+                <TableHead className="w-32" />
+                <TableHead className="w-12" />
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {therapeuticAreaRows.map((row) => (
+                <TableRow key={row.id} className="h-16">
+                  <TableCell className="text-sm font-medium">
+                    {row.name}
+                  </TableCell>
+                  <TableCell className="text-sm text-muted-foreground">
+                    {row.lastModified}
+                  </TableCell>
+                  <TableCell className="text-sm text-muted-foreground">
+                    {row.lastRefresh}
+                  </TableCell>
+                  <TableCell>
+                    <Link href="/apps">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full px-6 text-sm font-medium"
+                      >
+                        Open
+                      </Button>
+                    </Link>
+                  </TableCell>
+                  <TableCell>
+                    <button className="rounded-md p-1.5 text-muted-foreground hover:bg-muted">
+                      <MoreHorizontal className="h-5 w-5" />
+                    </button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </section>
     </div>
   );
 }
